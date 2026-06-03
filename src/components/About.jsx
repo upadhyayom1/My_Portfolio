@@ -16,7 +16,7 @@ const About = () => {
 
       
 
-      <div className="cards grid grid-cols-3 gap-5 ml-20 mr-20 mt-10">
+      <div className="cards grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))]  gap-5 ml-20 mr-20 mt-10">
         <div
           className="card bg-[#161616] p-5 rounded-lg border border-[#2d2d2d]
           shadow-md transition-all duration-300 hover:-translate-y-2

@@ -13,7 +13,10 @@ const Services = () => {
         modern technologies, solve problems, and transform ideas into functional
         applications.
       </p>
-      <section id="services" className="services grid grid-cols-2 gap-5 m-5">
+<section
+  id="services"
+  className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-2.5 px-6"
+>
         <Services_card
           title="MNNIT CIVIC ISSUE REPORTER"
           description="Developed a web platform that enables users to report civic issues such as damaged roads, streetlight failures, water leakage, and sanitation problems.It helps helping track and resolve issues more efficiently."

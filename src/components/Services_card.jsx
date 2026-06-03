@@ -6,8 +6,8 @@ const Services_card = (props) => {
       className="card
     flex flex-col
     justify-between
-    w-87.5
-    h-100
+    w-full
+    min-h-[400px]
     p-6
     rounded-2xl
     bg-[#161616]
