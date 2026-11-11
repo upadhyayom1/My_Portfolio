@@ -52,21 +52,22 @@ export default function SelectedWork() {
         }
       );
 
-      // 2. Wire and Hanging Cards Entrance Illumination
+      // 2. Wire and Hanging Cards Entrance Illumination (Zero Blur for Razor-Sharp Cards)
       const cards = section.querySelectorAll(".project-hanging-card");
       if (cards.length) {
         gsap.fromTo(
           cards,
           {
-            opacity: 0.15,
-            filter: "brightness(0.4) blur(4px)",
+            opacity: 0.2,
+            y: 24,
           },
           {
             opacity: 1,
-            filter: "brightness(1) blur(0px)",
+            y: 0,
             duration: 1.1,
             stagger: 0.1,
             ease: "power2.out",
+            clearProps: "opacity",
             scrollTrigger: {
               trigger: section.querySelector(".wire-container"),
               start: "top 85%",

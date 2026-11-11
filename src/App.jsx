@@ -40,6 +40,7 @@ export default function App() {
           wheelMultiplier: 0.95,
           touchMultiplier: 1.5,
         });
+        window.__lenis = lenis;
 
         lenis.on("scroll", (e) => {
           ScrollTrigger.update();
