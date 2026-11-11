@@ -1,215 +1,162 @@
 import { useState } from "react";
-import {
-  FaEnvelope,
-  FaPhone,
-  FaLocationDot,
-  FaLinkedin,
-  FaGithub,
-  FaCopy,
-  FaCheck,
-  FaDownload,
-  FaPaperPlane,
-} from "react-icons/fa6";
-import { SiLeetcode, SiCodeforces } from "react-icons/si";
-import { HiSparkles } from "react-icons/hi2";
+import SectionHeading from "./SectionHeading";
+import { personalInfo } from "../data/portfolioData";
+import { Copy, Check, ArrowUpRight, Phone, MapPin, FileText } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { SiLeetcode } from "react-icons/si";
 
-const Contact = () => {
+export default function Contact() {
   const [copied, setCopied] = useState(false);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("upadhyayom234@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch {
+      // clipboard access fallback
+    }
   };
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono font-semibold mb-4">
-            <HiSparkles className="text-sm" />
-            <span>CONNECT WITH ME</span>
+    <section id="contact" className="py-20 sm:py-32 border-t border-[#E5E7EB] bg-[#FFFFFF]">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
+        <SectionHeading
+          number="06 / CONTACT"
+          title="Have something interesting in mind?"
+          subtitle="I'm always interested in thoughtful projects, engineering opportunities, and conversations about building useful software."
+        />
+
+        {/* Oversized Expressive Email Element */}
+        <div className="my-12 py-10 px-8 sm:px-12 rounded-2xl bg-[#F7F7F5] border border-[#E5E7EB] flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <span className="font-mono text-xs uppercase tracking-wider text-[#6B6D72] block mb-2">
+              Primary Communication
+            </span>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-[#0E0F11] hover:text-[#17804A] transition-colors break-all"
+            >
+              {personalInfo.email}
+            </a>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-            Let's <span className="gradient-text-accent">Collaborate</span>
-          </h2>
+          <div className="flex items-center gap-3 shrink-0">
+            <button
+              onClick={handleCopyEmail}
+              className="inline-flex items-center gap-2 h-11 px-5 rounded-[6px] bg-[#FFFFFF] border border-[#D7D9DE] text-[#0E0F11] font-ui text-xs font-semibold hover:border-[#0E0F11] hover:bg-[#FAFAF8] transition-all shadow-sm"
+              type="button"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4 text-[#17804A]" />
+                  <span>Copied to Clipboard</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-4 h-4 text-[#6B6D72]" />
+                  <span>Copy Address</span>
+                </>
+              )}
+            </button>
 
-          <p className="text-base sm:text-lg text-gray-300 max-w-2xl leading-relaxed">
-            Interested in hiring, collaborating on an impactful project, or discussing full-stack development? Feel free to reach out.
-          </p>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="inline-flex items-center justify-center w-11 h-11 rounded-[6px] bg-[#0E0F11] text-[#FAFAF8] hover:bg-[#232529] transition-colors"
+              aria-label="Send email"
+            >
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
-        {/* Contact Container */}
-        <div className="max-w-4xl mx-auto rounded-3xl bg-[#121422]/90 border border-white/10 p-8 sm:p-12 backdrop-blur-xl shadow-2xl relative overflow-hidden">
-          {/* Subtle ambient light */}
-          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
-            {/* Left Contact Info */}
-            <div className="flex flex-col justify-between">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-4">Contact Information</h3>
-                <p className="text-sm text-gray-300 leading-relaxed mb-8">
-                  I'm currently based in Prayagraj at MNNIT Allahabad, actively exploring internships, software engineering roles, and open-source opportunities.
-                </p>
-
-                <div className="space-y-4">
-                  {/* Email */}
-                  <div className="flex items-center gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center flex-shrink-0">
-                      <FaEnvelope />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs font-mono text-gray-400">Email Address</p>
-                      <a
-                        href="mailto:upadhyayom234@gmail.com"
-                        className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors truncate block"
-                      >
-                        upadhyayom234@gmail.com
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Phone */}
-                  <div className="flex items-center gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center flex-shrink-0">
-                      <FaPhone />
-                    </div>
-                    <div>
-                      <p className="text-xs font-mono text-gray-400">Phone</p>
-                      <a
-                        href="tel:+919934814326"
-                        className="text-sm font-semibold text-white hover:text-emerald-400 transition-colors"
-                      >
-                        +91 9934814326
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Location */}
-                  <div className="flex items-center gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-pink-500/15 text-pink-400 flex items-center justify-center flex-shrink-0">
-                      <FaLocationDot />
-                    </div>
-                    <div>
-                      <p className="text-xs font-mono text-gray-400">Location</p>
-                      <p className="text-sm font-semibold text-white">
-                        MNNIT Allahabad, Prayagraj, UP, India
-                      </p>
-                    </div>
-                  </div>
-                </div>
+        {/* Direct Channels & Social Channels Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+          {/* Phone & Direct */}
+          <div className="p-6 rounded-xl bg-[#FAFAF8] border border-[#E5E7EB] space-y-4">
+            <span className="font-mono text-xs text-[#6B6D72] uppercase tracking-wider block">
+              Direct Contact
+            </span>
+            <div className="space-y-3 font-ui text-sm">
+              <div className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-[#6B6D72]" />
+                <a
+                  href={`tel:${personalInfo.phone.replace(/\s+/g, "")}`}
+                  className="font-mono font-medium text-[#0E0F11] hover:text-[#17804A]"
+                >
+                  {personalInfo.phone}
+                </a>
               </div>
-
-              {/* Social Profiles row */}
-              <div className="pt-8 mt-8 border-t border-white/10 flex items-center gap-3">
-                <a
-                  href="https://github.com/upadhyayom1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors"
-                  aria-label="GitHub"
-                >
-                  <FaGithub />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/om-upadhyay-772787371/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-[#0a66c2] hover:bg-[#0a66c2]/15 flex items-center justify-center transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin />
-                </a>
-                <a
-                  href="https://leetcode.com/upadhyayom1/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-[#ffa116] hover:bg-[#ffa116]/15 flex items-center justify-center transition-colors"
-                  aria-label="LeetCode"
-                >
-                  <SiLeetcode />
-                </a>
-                <a
-                  href="https://codeforces.com/profile/upadhyayom1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-[#318ce7] hover:bg-[#318ce7]/15 flex items-center justify-center transition-colors"
-                  aria-label="Codeforces"
-                >
-                  <SiCodeforces />
-                </a>
+              <div className="flex items-center gap-3">
+                <MapPin className="w-4 h-4 text-[#6B6D72]" />
+                <span className="text-[#0E0F11]">
+                  MNNIT Allahabad, Prayagraj, India
+                </span>
               </div>
             </div>
+          </div>
 
-            {/* Right Interactive Quick Actions */}
-            <div className="flex flex-col justify-between bg-[#0e101a] border border-white/10 rounded-2xl p-6 sm:p-8">
-              <div>
-                <h4 className="text-lg font-bold text-white mb-2">Quick Action Bar</h4>
-                <p className="text-xs text-gray-400 mb-6">
-                  Fastest way to get in touch or save my credentials.
-                </p>
-
-                <div className="space-y-3.5">
-                  {/* Copy Email Button with Toast */}
-                  <button
-                    onClick={handleCopyEmail}
-                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-indigo-500/40 text-sm font-semibold text-white transition-all"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      {copied ? (
-                        <FaCheck className="text-emerald-400 text-base" />
-                      ) : (
-                        <FaCopy className="text-indigo-400 text-base" />
-                      )}
-                      <span>{copied ? "Email Copied to Clipboard!" : "Copy Email Address"}</span>
-                    </span>
-                    <span className="text-[11px] font-mono text-gray-400">
-                      {copied ? "Done" : "Click"}
-                    </span>
-                  </button>
-
-                  {/* Direct Send Mail */}
-                  <a
-                    href="mailto:upadhyayom234@gmail.com?subject=Hello%20Om%20-%20Opportunity%20Discussion"
-                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-sm font-semibold text-white transition-all shadow-md shadow-indigo-600/30"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <FaPaperPlane className="text-white text-sm" />
-                      <span>Send Direct Email</span>
-                    </span>
-                    <span className="text-[11px] font-mono text-indigo-200">Open App →</span>
-                  </a>
-
-                  {/* Direct Download CV */}
-                  <a
-                    href="/Om_Upadhyay_Resume.pdf"
-                    download="Om_Upadhyay_Resume.pdf"
-                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-semibold text-gray-200 hover:text-white transition-all"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <FaDownload className="text-emerald-400 text-sm" />
-                      <span>Download Full Resume (PDF)</span>
-                    </span>
-                    <span className="text-[11px] font-mono text-gray-400">PDF</span>
-                  </a>
+          {/* Social Links */}
+          <div className="p-6 rounded-xl bg-[#FAFAF8] border border-[#E5E7EB] space-y-4 md:col-span-2">
+            <span className="font-mono text-xs text-[#6B6D72] uppercase tracking-wider block">
+              Verified Profiles &amp; Repositories
+            </span>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <a
+                href={personalInfo.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] transition-colors flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
+              >
+                <div className="flex items-center gap-2">
+                  <FaGithub className="w-4 h-4" />
+                  <span>GitHub</span>
                 </div>
-              </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72]" />
+              </a>
 
-              {/* Status footer inside card */}
-              <div className="pt-6 mt-6 border-t border-white/10 flex items-center gap-2 text-xs font-mono text-gray-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Response time: Usually within 24 hours</span>
-              </div>
+              <a
+                href={personalInfo.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] transition-colors flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
+              >
+                <div className="flex items-center gap-2">
+                  <FaLinkedin className="w-4 h-4" />
+                  <span>LinkedIn</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72]" />
+              </a>
+
+              <a
+                href={personalInfo.socials.leetcode}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] transition-colors flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
+              >
+                <div className="flex items-center gap-2">
+                  <SiLeetcode className="w-4 h-4" />
+                  <span>LeetCode</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72]" />
+              </a>
+
+              <a
+                href={personalInfo.resumePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] transition-colors flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
+              >
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4" />
+                  <span>Resume</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72]" />
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}

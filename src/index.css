@@ -1,144 +1,130 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    
-    --bg-main: #0a0a0f;
-    --bg-card: rgba(18, 20, 29, 0.75);
-    --border-card: rgba(255, 255, 255, 0.08);
-    --border-card-hover: rgba(99, 102, 241, 0.4);
-    
-    --accent-cyan: #38bdf8;
-    --accent-indigo: #6366f1;
-    --accent-violet: #8b5cf6;
-    --accent-emerald: #10b981;
-    --accent-amber: #f59e0b;
-  }
+@theme {
+  --color-primary: #0E0F11;
+  --color-primary-contrast: #FAFAF8;
+  --color-secondary: #6B6D72;
+  --color-tertiary: #17804A;
+  --color-neutral: #F7F7F5;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F0F0ED;
+  --color-border: #E5E7EB;
+  --color-border-strong: #D7D9DE;
 
-  html {
-    font-family: var(--font-primary);
-    scroll-behavior: smooth;
-    background-color: var(--bg-main);
-    color: #f1f5f9;
-  }
-
-  body {
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
-
-  /* Modern custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0a0a0f;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #232738;
-    border-radius: 9999px;
-    border: 2px solid #0a0a0f;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #4f46e5;
-  }
+  --font-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-ui: 'Onest', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Reusable Glass & Glow Utility Classes */
-.glass-panel {
-  background: rgba(18, 20, 29, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+:root {
+  --primary: #0E0F11;
+  --primary-contrast: #FAFAF8;
+  --secondary: #6B6D72;
+  --tertiary: #17804A;
+  --neutral: #F7F7F5;
+  --surface: #FFFFFF;
+  --surface-muted: #F0F0ED;
+  --border: #E5E7EB;
+  --border-strong: #D7D9DE;
+
+  --font-inter-tight: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-onest: 'Onest', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-dm-mono: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
-.glass-panel-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.glass-panel-hover:hover {
-  transform: translateY(-4px);
-  border-color: rgba(99, 102, 241, 0.35);
-  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2), 0 0 15px -3px rgba(99, 102, 241, 0.15);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 70%, #6366f1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+html {
+  font-family: var(--font-inter-tight);
+  background-color: #F7F7F5;
+  color: #0E0F11;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.gradient-text-accent {
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F7F7F5;
+  color: #0E0F11;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-.gradient-text-amber {
-  background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Subtle editorial paper grain */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Ambient glow blobs */
-@keyframes float-blob-1 {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(40px, -60px) scale(1.1);
-  }
-  66% {
-    transform: translate(-30px, 30px) scale(0.95);
-  }
+/* Fluid responsive typography classes */
+.font-display {
+  font-family: var(--font-inter-tight);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.042em;
 }
 
-@keyframes float-blob-2 {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(-50px, 40px) scale(1.15);
-  }
-  66% {
-    transform: translate(40px, -40px) scale(0.9);
-  }
+.font-heading-lg {
+  font-family: var(--font-inter-tight);
+  font-size: clamp(28px, 4.5vw, 46px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-.animate-blob-1 {
-  animation: float-blob-1 18s ease-in-out infinite alternate;
-}
-.animate-blob-2 {
-  animation: float-blob-2 22s ease-in-out infinite alternate;
-}
-
-/* Subtle pulse badge */
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.4);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(0.95);
-    opacity: 0;
-  }
+.font-heading-md {
+  font-family: var(--font-inter-tight);
+  font-size: clamp(22px, 3vw, 33px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
 }
 
-.pulse-ring-dot {
-  position: relative;
+.font-body {
+  font-family: var(--font-inter-tight);
+  font-size: 15px;
+  line-height: 1.65;
+  color: #6B6D72;
 }
-.pulse-ring-dot::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 9999px;
-  background-color: #10b981;
-  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  z-index: -1;
+
+.font-ui {
+  font-family: var(--font-onest);
+}
+
+.font-mono-meta {
+  font-family: var(--font-dm-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F7F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #D7D9DE;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6B6D72;
+}
+
+/* Top progress line */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background-color: #0E0F11;
+  z-index: 100;
+  transition: width 0.08s ease-out;
 }

@@ -1,188 +1,147 @@
-import {
-  FaGraduationCap,
-  FaSchool,
-  FaHandHoldingHeart,
-  FaChalkboardUser,
-  FaLaptopCode,
-} from "react-icons/fa6";
-import { HiSparkles } from "react-icons/hi2";
+import SectionHeading from "./SectionHeading";
+import { personalInfo } from "../data/portfolioData";
+import { MapPin, GraduationCap, Award, Terminal, ShieldCheck } from "lucide-react";
 
-const About = () => {
-  const stats = [
-    { value: "8.82", label: "B.Tech CGPA", sub: "MNNIT Allahabad" },
-    { value: "450+", label: "DSA Solved", sub: "LeetCode & Platforms" },
-    { value: "1700", label: "LeetCode Rating", sub: "Knight Track" },
-    { value: "Top 10", label: "HACK 18", sub: "Only 1st Year Team" },
-  ];
-
-  const education = [
-    {
-      institution: "Motilal Nehru National Institute of Technology Allahabad",
-      location: "Prayagraj, Uttar Pradesh",
-      degree: "Bachelor of Technology in Computer Science & Engineering",
-      score: "CGPA: 8.82 / 10.0 (till 2nd Semester)",
-      period: "2025 – 2029",
-      icon: FaGraduationCap,
-      badge: "B.Tech CSE",
-    },
-    {
-      institution: "Jawahar Navodaya Vidyalaya, Rajgir, Bihar",
-      location: "Rajgir, Bihar",
-      degree: "Class XII (Senior Secondary), CBSE Board",
-      score: "Score: 93.0%",
-      period: "Completed 2025",
-      icon: FaSchool,
-      badge: "Class XII",
-    },
-    {
-      institution: "Jawahar Navodaya Vidyalaya, Rohtas, Bihar",
-      location: "Rohtas, Bihar",
-      degree: "Class X (Secondary), CBSE Board",
-      score: "Score: 96.4%",
-      period: "Completed 2023",
-      icon: FaSchool,
-      badge: "Class X",
-    },
-  ];
-
-  const leadership = [
-    {
-      role: "Coordinator & Teacher",
-      org: "Anokhi Pahel (MNNIT Allahabad)",
-      duration: "Nov 2025 – Aug 2026",
-      desc: "Contributing actively to a student-led social education initiative dedicated to delivering quality tutoring, mentoring, and academic resources to underprivileged students in local communities.",
-      icon: FaChalkboardUser,
-    },
-    {
-      role: "Volunteer",
-      org: "Antyodaya",
-      duration: "Nov 2025",
-      desc: "Supported student-driven social welfare drives, resource collection, and community upliftment initiatives organized on campus.",
-      icon: FaHandHoldingHeart,
-    },
-  ];
-
+export default function About() {
   return (
-    <section id="about" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono font-semibold mb-4">
-            <HiSparkles className="text-sm" />
-            <span>BACKGROUND & ACADEMICS</span>
-          </div>
+    <section id="about" className="py-20 sm:py-28 border-t border-[#E5E7EB]">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
+        <SectionHeading
+          number="02 / ABOUT"
+          title="A little about the person behind the code."
+          subtitle="Engineering philosophy, academic context, and architectural approach."
+        />
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-            About <span className="gradient-text-accent">Me</span>
-          </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Left Column: Asymmetric Architectural Profile Card (approx 42%) */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+              {/* Subtle architectural grid pattern */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#F0F0ED] rounded-bl-full pointer-events-none opacity-40" />
 
-          <p className="text-base sm:text-lg text-gray-300 max-w-3xl leading-relaxed">
-            I am a Computer Science undergraduate at MNNIT Allahabad driven by curiosity for scalable system design, algorithmic problem-solving, and community impact.
-          </p>
-        </div>
-
-        {/* Highlight Stats Row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-16">
-          {stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className="rounded-2xl bg-[#121422]/90 border border-white/10 hover:border-indigo-500/30 p-6 text-center backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 shadow-md"
-            >
-              <p className="text-3xl sm:text-4xl font-extrabold gradient-text-accent mb-1">
-                {stat.value}
-              </p>
-              <p className="text-sm font-bold text-white mb-0.5">{stat.label}</p>
-              <p className="text-xs font-mono text-gray-400">{stat.sub}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Two-Column: Education & Leadership */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Left: Education Timeline */}
-          <div className="lg:col-span-7 flex flex-col">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-2.5 rounded-xl bg-indigo-500/15 text-indigo-400 text-lg">
-                <FaGraduationCap />
+              <div className="flex items-center justify-between border-b border-[#E5E7EB] pb-4 mb-6">
+                <div>
+                  <span className="font-mono text-xs text-[#6B6D72] uppercase tracking-wider block">
+                    Identity
+                  </span>
+                  <span className="font-ui text-base font-bold text-[#0E0F11]">
+                    {personalInfo.name}
+                  </span>
+                </div>
+                <div className="w-10 h-10 rounded-full bg-[#F0F0ED] border border-[#D7D9DE] flex items-center justify-center font-mono text-xs font-bold text-[#0E0F11]">
+                  OU
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-white">Education History</h3>
-            </div>
 
-            <div className="space-y-4">
-              {education.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="rounded-2xl bg-[#121422]/80 border border-white/10 p-6 backdrop-blur-xl hover:border-indigo-500/30 transition-all duration-200"
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
-                        <Icon className="text-xs" />
-                        <span>{item.badge}</span>
-                      </span>
-                      <span className="text-xs font-mono text-gray-400">{item.period}</span>
-                    </div>
-
-                    <h4 className="text-lg font-bold text-white mb-1">{item.institution}</h4>
-                    <p className="text-xs sm:text-sm text-gray-300 mb-2">{item.degree}</p>
-                    
-                    <div className="flex items-center justify-between pt-3 border-t border-white/5 text-xs">
-                      <span className="text-emerald-400 font-semibold font-mono">{item.score}</span>
-                      <span className="text-gray-400 font-mono">{item.location}</span>
-                    </div>
+              {/* Factual Academic Milestones */}
+              <div className="space-y-4 font-ui text-sm">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-[6px] bg-[#F7F7F5] border border-[#E5E7EB] flex items-center justify-center shrink-0 text-[#0E0F11]">
+                    <GraduationCap className="w-4 h-4" />
                   </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right: Leadership & Social Impact */}
-          <div className="lg:col-span-5 flex flex-col">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-2.5 rounded-xl bg-emerald-500/15 text-emerald-400 text-lg">
-                <FaHandHoldingHeart />
-              </div>
-              <h3 className="text-2xl font-bold text-white">Leadership & Service</h3>
-            </div>
-
-            <div className="space-y-4">
-              {leadership.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="rounded-2xl bg-[#121422]/80 border border-white/10 p-6 backdrop-blur-xl hover:border-emerald-500/30 transition-all duration-200"
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2 rounded-lg bg-white/5 text-emerald-400">
-                        <Icon />
-                      </div>
-                      <div>
-                        <h4 className="text-base font-bold text-white">{item.role}</h4>
-                        <p className="text-xs font-mono text-emerald-400">{item.org}</p>
-                      </div>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3">
-                      {item.desc}
-                    </p>
-
-                    <span className="text-[11px] font-mono text-gray-400">
-                      Duration: {item.duration}
+                  <div>
+                    <span className="block font-medium text-[#0E0F11]">
+                      B.Tech in Computer Science
+                    </span>
+                    <span className="text-xs text-[#6B6D72] font-mono">
+                      MNNIT Allahabad · 2025–2029
                     </span>
                   </div>
-                );
-              })}
-
-              {/* Developer Mindset Card */}
-              <div className="rounded-2xl bg-gradient-to-br from-indigo-950/40 via-[#121422] to-purple-950/40 border border-indigo-500/20 p-6">
-                <div className="flex items-center gap-2 text-indigo-300 font-mono text-xs font-bold uppercase tracking-wider mb-2">
-                  <FaLaptopCode className="text-sm" />
-                  <span>My Engineering Philosophy</span>
                 </div>
-                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                  "Prioritize understanding core algorithmic fundamentals first, then build robust, production-ready systems that deliver tangible value to people."
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-[6px] bg-[#F7F7F5] border border-[#E5E7EB] flex items-center justify-center shrink-0 text-[#17804A]">
+                    <Award className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="block font-medium text-[#0E0F11]">
+                      Cumulative GPA: 8.82 / 10.0
+                    </span>
+                    <span className="text-xs text-[#6B6D72] font-mono">
+                      Verified Academic Record
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-[6px] bg-[#F7F7F5] border border-[#E5E7EB] flex items-center justify-center shrink-0 text-[#0E0F11]">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="block font-medium text-[#0E0F11]">
+                      Prayagraj, Uttar Pradesh
+                    </span>
+                    <span className="text-xs text-[#6B6D72] font-mono">
+                      Motilal Nehru National Institute of Technology
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-[6px] bg-[#F7F7F5] border border-[#E5E7EB] flex items-center justify-center shrink-0 text-[#0E0F11]">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="block font-medium text-[#0E0F11]">
+                      Open Source &amp; Systems
+                    </span>
+                    <span className="text-xs text-[#6B6D72] font-mono">
+                      GSSoC 2026 Contributor · E-Cell Web Dev
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Monogram Terminal Preview */}
+              <div className="mt-6 pt-6 border-t border-[#E5E7EB] bg-[#FAFAF8] -mx-6 -mb-6 p-6 rounded-b-xl">
+                <div className="flex items-center gap-2 mb-2 text-[#6B6D72] font-mono text-xs">
+                  <Terminal className="w-3.5 h-3.5" />
+                  <span>status_check.sh</span>
+                </div>
+                <div className="font-mono text-xs text-[#0E0F11] space-y-1">
+                  <p className="text-[#17804A]">✔ Systems operational</p>
+                  <p className="text-[#6B6D72]">Focus: In-memory FIFO, Trajectory AI</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Editorial Narrative & Principles (approx 58%) */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="prose max-w-none text-[#0E0F11]">
+              <p className="font-heading-md text-[#0E0F11] text-2xl sm:text-3xl leading-snug font-medium mb-6">
+                "I enjoy building software that combines thoughtful interfaces with reliable backend systems."
+              </p>
+
+              <div className="space-y-5 font-body text-[#6B6D72] text-base sm:text-[17px] leading-relaxed">
+                <p>
+                  I'm Om Upadhyay, a Computer Science and Engineering undergraduate at Motilal Nehru National Institute of Technology Allahabad.
+                </p>
+                <p>
+                  My work spans full-stack web development, real-time applications, developer tooling, and AI-integrated platforms. Whether developing in-memory FIFO order-matching books for secondary ticketing with PassFlow, orchestrating computer vision ANPR pipelines for urban traffic intelligence with Nagar-Drishti, or designing secure preload IPC bridges in Electron desktop engines with AuraDesk, I focus on the underlying architecture as much as the visible interface.
+                </p>
+                <p>
+                  Beyond projects, I spend time strengthening my understanding of data structures, algorithms, and the engineering decisions that make software scalable and maintainable. I believe software engineering is most rewarding when clean theory translates into robust, dependable products.
+                </p>
+              </div>
+            </div>
+
+            {/* Principles Cards */}
+            <div className="pt-6 border-t border-[#E5E7EB] grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB]">
+                <span className="font-mono text-xs font-semibold text-[#17804A] block mb-1">
+                  01 / DETERMINISTIC ARCHITECTURE
+                </span>
+                <p className="font-body text-xs sm:text-sm text-[#6B6D72]">
+                  Reliable transactional boundaries, race condition avoidance, and reproducible data state across real-time systems.
+                </p>
+              </div>
+              <div className="p-5 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB]">
+                <span className="font-mono text-xs font-semibold text-[#0E0F11] block mb-1">
+                  02 / SWISS EDITORIAL CRAFT
+                </span>
+                <p className="font-body text-xs sm:text-sm text-[#6B6D72]">
+                  Quiet typography, generous hierarchy, and restrained interactive details instead of distracting visual clutter.
                 </p>
               </div>
             </div>
@@ -191,6 +150,4 @@ const About = () => {
       </div>
     </section>
   );
-};
-
-export default About;
+}
