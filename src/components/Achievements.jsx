@@ -30,11 +30,11 @@ export default function Achievements() {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#6B6D72] hover:text-[#0E0F11] inline-flex items-center gap-0.5"
+                      className="group font-mono text-xs text-[#6B6D72] hover:text-[#0E0F11] inline-flex items-center gap-1 transition-colors"
                       aria-label={`View ${item.label} link`}
                     >
-                      <span>Verify</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                      <span className="editorial-link">Verify</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </a>
                   )}
                 </div>

@@ -41,120 +41,120 @@ export default function Contact() {
             </a>
           </div>
 
-            <div className="flex flex-wrap items-center gap-3 shrink-0">
-              <button
-                onClick={handleCopyEmail}
-                className="btn-editorial h-11 px-0 pl-4 pr-1 text-xs"
-                type="button"
-              >
-                <span className="mr-2">
-                  {copied ? "Copied to Clipboard" : "Copy Address"}
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <button
+              onClick={handleCopyEmail}
+              className="btn-editorial h-11 px-0 pl-4 pr-1 text-xs"
+              type="button"
+            >
+              <span className="mr-2">
+                {copied ? "Copied to Clipboard" : "Copy Address"}
+              </span>
+              <i className="btn-icon-bubble !w-8 !h-8">
+                {copied ? <Check className="w-4 h-4 text-[#17804A]" /> : <Copy className="w-3.5 h-3.5" />}
+              </i>
+            </button>
+
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="btn-editorial btn-editorial-solid h-11 px-0 pl-4 pr-1 text-xs"
+              aria-label="Send email"
+            >
+              <span className="mr-2">Send Message</span>
+              <i className="btn-icon-bubble !w-8 !h-8">
+                <ArrowUpRight className="w-4 h-4" />
+              </i>
+            </a>
+          </div>
+        </div>
+
+        {/* Direct Channels & Social Channels Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+          {/* Phone & Direct */}
+          <div className="p-6 rounded-xl bg-[#FAFAF8] border border-[#E5E7EB] space-y-4">
+            <span className="font-mono text-xs text-[#6B6D72] uppercase tracking-wider block">
+              Direct Contact
+            </span>
+            <div className="space-y-3 font-ui text-sm">
+              <div className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-[#6B6D72]" />
+                <a
+                  href={`tel:${personalInfo.phone.replace(/\s+/g, "")}`}
+                  className="font-mono font-medium text-[#0E0F11] hover:text-[#17804A]"
+                >
+                  {personalInfo.phone}
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <MapPin className="w-4 h-4 text-[#6B6D72]" />
+                <span className="text-[#0E0F11]">
+                  MNNIT Allahabad, Prayagraj, India
                 </span>
-                <i className="btn-icon-bubble !w-8 !h-8">
-                  {copied ? <Check className="w-4 h-4 text-[#17804A]" /> : <Copy className="w-3.5 h-3.5" />}
-                </i>
-              </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Links */}
+          <div className="p-6 rounded-xl bg-[#FAFAF8] border border-[#E5E7EB] space-y-4 md:col-span-2">
+            <span className="font-mono text-xs text-[#6B6D72] uppercase tracking-wider block">
+              Verified Profiles &amp; Repositories
+            </span>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <a
+                href={personalInfo.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
+              >
+                <div className="flex items-center gap-2">
+                  <FaGithub className="w-4 h-4 text-[#0E0F11]" />
+                  <span>GitHub</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72] group-hover:text-[#0E0F11] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              </a>
 
               <a
-                href={`mailto:${personalInfo.email}`}
-                className="btn-editorial btn-editorial-solid h-11 px-0 pl-4 pr-1 text-xs"
-                aria-label="Send email"
+                href={personalInfo.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
               >
-                <span className="mr-2">Send Message</span>
-                <i className="btn-icon-bubble !w-8 !h-8">
-                  <ArrowUpRight className="w-4 h-4" />
-                </i>
+                <div className="flex items-center gap-2">
+                  <FaLinkedin className="w-4 h-4 text-[#0E0F11]" />
+                  <span>LinkedIn</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72] group-hover:text-[#0E0F11] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              </a>
+
+              <a
+                href={personalInfo.socials.leetcode}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
+              >
+                <div className="flex items-center gap-2">
+                  <SiLeetcode className="w-4 h-4 text-[#0E0F11]" />
+                  <span>LeetCode</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72] group-hover:text-[#0E0F11] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              </a>
+
+              <a
+                href={personalInfo.resumePath}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
+              >
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-[#0E0F11]" />
+                  <span>Resume</span>
+                </div>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72] group-hover:text-[#0E0F11] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
               </a>
             </div>
           </div>
-
-          {/* Direct Channels & Social Channels Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-            {/* Phone & Direct */}
-            <div className="p-6 rounded-xl bg-[#FAFAF8] border border-[#E5E7EB] space-y-4">
-              <span className="font-mono text-xs text-[#6B6D72] uppercase tracking-wider block">
-                Direct Contact
-              </span>
-              <div className="space-y-3 font-ui text-sm">
-                <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-[#6B6D72]" />
-                  <a
-                    href={`tel:${personalInfo.phone.replace(/\s+/g, "")}`}
-                    className="font-mono font-medium text-[#0E0F11] hover:text-[#17804A]"
-                  >
-                    {personalInfo.phone}
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-4 h-4 text-[#6B6D72]" />
-                  <span className="text-[#0E0F11]">
-                    MNNIT Allahabad, Prayagraj, India
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="p-6 rounded-xl bg-[#FAFAF8] border border-[#E5E7EB] space-y-4 md:col-span-2">
-              <span className="font-mono text-xs text-[#6B6D72] uppercase tracking-wider block">
-                Verified Profiles &amp; Repositories
-              </span>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <a
-                  href={personalInfo.socials.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] transition-colors flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
-                >
-                  <div className="flex items-center gap-2">
-                    <FaGithub className="w-4 h-4" />
-                    <span>GitHub</span>
-                  </div>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72]" />
-                </a>
-
-                <a
-                  href={personalInfo.socials.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] transition-colors flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
-                >
-                  <div className="flex items-center gap-2">
-                    <FaLinkedin className="w-4 h-4" />
-                    <span>LinkedIn</span>
-                  </div>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72]" />
-                </a>
-
-                <a
-                  href={personalInfo.socials.leetcode}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] transition-colors flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
-                >
-                  <div className="flex items-center gap-2">
-                    <SiLeetcode className="w-4 h-4" />
-                    <span>LeetCode</span>
-                  </div>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72]" />
-                </a>
-
-                <a
-                  href={personalInfo.resumePath}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB] hover:border-[#0E0F11] transition-colors flex items-center justify-between font-ui text-xs font-medium text-[#0E0F11]"
-                >
-                  <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4" />
-                    <span>Resume</span>
-                  </div>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#6B6D72]" />
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
     </section>
   );
 }

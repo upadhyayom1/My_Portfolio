@@ -30,49 +30,46 @@ export default function SelectedWork() {
     if (!section || !header) return;
 
     const ctx = gsap.context(() => {
-      // 1. Header text brightness & opacity slow illumination reveal
+      // 1. Header text brightness & opacity slow illumination reveal (Scrub-linked)
       gsap.fromTo(
         header.querySelectorAll(".reveal-text"),
         {
           opacity: 0.15,
           filter: "brightness(0.35) blur(5px)",
-          y: 20,
+          y: 24,
         },
         {
           opacity: 1,
           filter: "brightness(1) blur(0px)",
           y: 0,
-          duration: 1.1,
-          stagger: 0.12,
-          ease: "power3.out",
+          ease: "none",
           scrollTrigger: {
             trigger: header,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
+            start: "top 88%",
+            end: "top 55%",
+            scrub: 0.8,
           },
         }
       );
 
-      // 2. Wire and Hanging Cards Entrance Drop with Elastic Sway
+      // 2. Wire and Hanging Cards Entrance Illumination
       const cards = section.querySelectorAll(".project-hanging-card");
       if (cards.length) {
         gsap.fromTo(
           cards,
           {
-            y: -36,
-            opacity: 0.2,
+            opacity: 0.15,
             filter: "brightness(0.4) blur(4px)",
           },
           {
-            y: 0,
             opacity: 1,
             filter: "brightness(1) blur(0px)",
-            duration: 1.3,
-            stagger: 0.14,
-            ease: "elastic.out(1.1, 0.32)",
+            duration: 1.1,
+            stagger: 0.1,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: section.querySelector(".wire-container"),
-              start: "top 82%",
+              start: "top 85%",
               toggleActions: "play none none reverse",
             },
           }

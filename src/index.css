@@ -38,9 +38,22 @@ html {
   font-family: var(--font-inter-tight);
   background-color: #F7F7F5;
   color: #0E0F11;
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lenis Smooth Scroll System */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 body {
@@ -124,13 +137,16 @@ body {
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #F7F7F5;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #D7D9DE;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #6B6D72;
 }
