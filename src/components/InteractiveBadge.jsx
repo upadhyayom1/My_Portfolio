@@ -19,7 +19,7 @@ function checkWebGLSupport() {
   }
 }
 
-export default function InteractiveBadge() {
+export default function InteractiveBadge({ className = "", showControls = true }) {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -669,7 +669,7 @@ export default function InteractiveBadge() {
     let hookLen = 0.34;
     let mobile = false;
     let viewW = 16;
-    const anchorY = 5.8;
+    const anchorY = 5.2;
 
     const ex = new V(1, 0, 0);
     const ey = new V(0, 1, 0);
@@ -756,11 +756,11 @@ export default function InteractiveBadge() {
       const aspect = W / Hh;
       viewW = VIEW_H * aspect;
       mobile = aspect < 0.9;
-      S = mobile ? clamp(viewW / 5.2, 0.78, 1.0) : clamp(viewW / 7.2, 0.95, 1.25);
+      S = mobile ? clamp(viewW / 5.2, 0.72, 0.95) : clamp(viewW / 8.2, 0.82, 1.15);
 
-      const clampY = mobile ? 2.1 : 1.75;
+      const clampY = mobile ? 1.6 : 1.25;
       hookLen = 0.345 * S;
-      const ax = mobile ? 1.0 : 1.5 * S;
+      const ax = mobile ? 0.9 : 1.35 * S;
       anchors[0].set(-ax, anchorY, -0.05);
       anchors[1].set(ax, anchorY, -0.05);
 
@@ -1390,7 +1390,7 @@ export default function InteractiveBadge() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[520px] sm:h-[580px] lg:h-[640px] flex items-center justify-center outline-none select-none touch-none"
+      className={`relative w-full h-full min-h-[500px] flex items-center justify-center outline-none select-none touch-none ${className}`}
       tabIndex={0}
       aria-label="Om Upadhyay's interactive 3D lanyard identification badge. Drag to swing, tap to turn over."
     >
@@ -1401,24 +1401,26 @@ export default function InteractiveBadge() {
       />
 
       {/* Floating Interaction Controls */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-[#FAFAF8]/90 backdrop-blur-md border border-[#E5E7EB] rounded-full px-3.5 py-1.5 shadow-sm text-xs font-mono text-[#6B6D72]">
-        <span className="flex items-center gap-1.5">
-          <Move className="w-3.5 h-3.5 text-[#0E0F11]" />
-          <span>Drag badge to fling</span>
-        </span>
-        <span className="w-1 h-1 rounded-full bg-[#D7D9DE]" />
-        <button
-          onClick={() => flipTriggerRef.current && flipTriggerRef.current()}
-          className="flex items-center gap-1.5 text-[#0E0F11] hover:text-[#17804A] font-medium transition-colors"
-          type="button"
-        >
-          <RotateCw className="w-3.5 h-3.5" />
-          <span>Flip card ({isFlipped ? "Back" : "Front"})</span>
-        </button>
-      </div>
+      {showControls && (
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-[#FAFAF8]/90 backdrop-blur-md border border-[#E5E7EB] rounded-full px-3.5 py-1.5 shadow-sm text-xs font-mono text-[#6B6D72]">
+          <span className="flex items-center gap-1.5">
+            <Move className="w-3.5 h-3.5 text-[#0E0F11]" />
+            <span>Drag badge to fling</span>
+          </span>
+          <span className="w-1 h-1 rounded-full bg-[#D7D9DE]" />
+          <button
+            onClick={() => flipTriggerRef.current && flipTriggerRef.current()}
+            className="flex items-center gap-1.5 text-[#0E0F11] hover:text-[#17804A] font-medium transition-colors"
+            type="button"
+          >
+            <RotateCw className="w-3.5 h-3.5" />
+            <span>Flip card ({isFlipped ? "Back" : "Front"})</span>
+          </button>
+        </div>
+      )}
 
       {/* Initial Subtle Hint */}
-      {hintVisible && (
+      {showControls && hintVisible && (
         <div className="absolute top-8 right-6 z-10 hidden sm:flex items-center gap-2 pointer-events-none opacity-80 transition-opacity">
           <div className="text-right font-mono text-[11px] text-[#6B6D72] uppercase tracking-wider">
             Grab badge to swing

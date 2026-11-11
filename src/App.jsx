@@ -8,6 +8,10 @@ import Experience from "./components/Experience";
 import Achievements from "./components/Achievements";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -25,6 +29,48 @@ export default function App() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // GSAP Slow Brightness & Opacity Illumination as user scrolls between sections
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = setTimeout(() => {
+      const sections = document.querySelectorAll("main > section:not(#hero)");
+      sections.forEach((sec) => {
+        // Collect major headings and editorial introductory text
+        const textElements = sec.querySelectorAll("h2, .section-heading, .editorial-heading");
+        if (textElements.length) {
+          gsap.fromTo(
+            textElements,
+            {
+              opacity: 0.15,
+              filter: "brightness(0.35) blur(5px)",
+              y: 24,
+            },
+            {
+              opacity: 1,
+              filter: "brightness(1) blur(0px)",
+              y: 0,
+              duration: 1.15,
+              stagger: 0.08,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: sec,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+      });
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 
   return (
@@ -50,23 +96,23 @@ export default function App() {
         {/* 01 / Selected Work */}
         <SelectedWork />
 
-        {/* 02 / About */}
+        {/* 02 / About Me */}
         <About />
 
-        {/* 03 / Expertise */}
+        {/* 03 / Technical Expertise */}
         <Expertise />
 
         {/* 04 / Experience & Education */}
         <Experience />
 
-        {/* 05 / Achievements */}
+        {/* 05 / Achievements & Competitive Profiles */}
         <Achievements />
 
         {/* 06 / Contact */}
         <Contact />
       </main>
 
-      {/* Footer */}
+      {/* Footer Colophon */}
       <Footer />
     </div>
   );

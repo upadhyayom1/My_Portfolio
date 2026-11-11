@@ -1,153 +1,278 @@
-import SectionHeading from "./SectionHeading";
-import { personalInfo } from "../data/portfolioData";
-import { MapPin, GraduationCap, Award, Terminal, ShieldCheck } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Camera, MapPin } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const [imgError, setImgError] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      // 1. Headline slow brightness illumination
+      gsap.fromTo(
+        section.querySelectorAll(".reveal-text"),
+        {
+          opacity: 0.15,
+          filter: "brightness(0.35) blur(6px)",
+          y: 24,
+        },
+        {
+          opacity: 1,
+          filter: "brightness(1) blur(0px)",
+          y: 0,
+          duration: 1.15,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section.querySelector(".about-header"),
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      // 2. Editorial statement and photo frame reveal
+      gsap.fromTo(
+        section.querySelectorAll(".reveal-statement"),
+        {
+          opacity: 0.15,
+          filter: "brightness(0.35) blur(5px)",
+          y: 28,
+        },
+        {
+          opacity: 1,
+          filter: "brightness(1) blur(0px)",
+          y: 0,
+          duration: 1.25,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section.querySelector(".about-content"),
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      // 3. Metadata columns reveal
+      gsap.fromTo(
+        section.querySelectorAll(".reveal-fact"),
+        {
+          opacity: 0.2,
+          filter: "brightness(0.4) blur(4px)",
+          y: 20,
+        },
+        {
+          opacity: 1,
+          filter: "brightness(1) blur(0px)",
+          y: 0,
+          duration: 1,
+          stagger: 0.12,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: section.querySelector(".about-facts"),
+            start: "top 88%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      // 4. Colossal Stat Figures slow illumination
+      gsap.fromTo(
+        section.querySelectorAll(".reveal-stat"),
+        {
+          opacity: 0.1,
+          filter: "brightness(0.3) blur(6px)",
+          y: 32,
+        },
+        {
+          opacity: 1,
+          filter: "brightness(1) blur(0px)",
+          y: 0,
+          duration: 1.3,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section.querySelector(".about-stats"),
+            start: "top 86%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="about" className="py-20 sm:py-28 border-t border-[#E5E7EB]">
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
-        <SectionHeading
-          number="02 / ABOUT"
-          title="A little about the person behind the code."
-          subtitle="Engineering philosophy, academic context, and architectural approach."
-        />
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column: Asymmetric Architectural Profile Card (approx 42%) */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-[#FFFFFF] border border-[#E5E7EB] rounded-xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
-              {/* Subtle architectural grid pattern */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#F0F0ED] rounded-bl-full pointer-events-none opacity-40" />
-
-              <div className="flex items-center justify-between border-b border-[#E5E7EB] pb-4 mb-6">
-                <div>
-                  <span className="font-mono text-xs text-[#6B6D72] uppercase tracking-wider block">
-                    Identity
-                  </span>
-                  <span className="font-ui text-base font-bold text-[#0E0F11]">
-                    {personalInfo.name}
-                  </span>
+      <section
+        ref={sectionRef}
+        id="about"
+        className="scroll-mt-16 sm:scroll-mt-20 py-20 sm:py-28 border-t border-[#E5E7EB]"
+      >
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12">
+          {/* Section Header: Matches Image 3 (02 ABOUT + Both sides of the stack.) */}
+              <div className="about-header mb-12 sm:mb-16">
+                <div className="reveal-text inline-flex items-center gap-2 mb-3 font-mono text-xs font-medium tracking-[0.15em] text-[#6B6D72] uppercase">
+                  <span>02 / ABOUT</span>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#F0F0ED] border border-[#D7D9DE] flex items-center justify-center font-mono text-xs font-bold text-[#0E0F11]">
-                  OU
-                </div>
+                  <h2 className="reveal-text font-serif-display text-4xl sm:text-5xl lg:text-[62px] text-[#0E0F11] font-normal leading-[1.08] tracking-tight">
+                    Both sides of the stack<span className="text-[#17804A]">.</span>
+                  </h2>
               </div>
 
-              {/* Factual Academic Milestones */}
-              <div className="space-y-4 font-ui text-sm">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-[6px] bg-[#F7F7F5] border border-[#E5E7EB] flex items-center justify-center shrink-0 text-[#0E0F11]">
-                    <GraduationCap className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="block font-medium text-[#0E0F11]">
-                      B.Tech in Computer Science
-                    </span>
-                    <span className="text-xs text-[#6B6D72] font-mono">
-                      MNNIT Allahabad · 2025–2029
-                    </span>
-                  </div>
-                </div>
+              {/* Main Grid: Left Portrait Photo Slot + Right Editorial Statement & Metadata */}
+                <div className="about-content grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mb-20 sm:mb-24">
+                  {/* Left Column: Dedicated Photo Frame (Matches Image 3) */}
+                    <div className="lg:col-span-5 flex flex-col items-start reveal-statement">
+                      <div className="relative w-full max-w-[340px] aspect-[3/4] rounded-2xl overflow-hidden border border-[#E5E7EB] bg-[#F0F0ED] shadow-[0_8px_24px_rgba(14,15,17,0.04)] group">
+                        {!imgError ? (
+                          <img
+                            src="/images/profile.jpg"
+                            alt="Om Upadhyay Portrait"
+                            onError={() => setImgError(true)}
+                            className="w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-500"
+                            loading="lazy"
+                          />
+                        ) : (
+                          /* Fallback Editorial Placeholder if image is missing */
+                          <div className="w-full h-full flex flex-col items-center justify-between p-8 text-center bg-[#F0F0ED]">
+                            <div className="w-full flex justify-between items-center text-xs font-mono text-[#6B6D72]">
+                              <span>PHOTO SPEC</span>
+                              <span>3:4 RATIO</span>
+                            </div>
+                            <div className="space-y-3">
+                              <div className="w-16 h-16 rounded-full bg-[#FFFFFF] border border-[#D7D9DE] mx-auto flex items-center justify-center text-[#0E0F11]">
+                                <Camera className="w-7 h-7 text-[#6B6D72]" />
+                              </div>
+                              <div>
+                                <p className="font-ui text-sm font-semibold text-[#0E0F11]">
+                                  Om Upadhyay
+                                </p>
+                                <p className="font-mono text-[11px] text-[#6B6D72]">
+                                  Drop profile.jpg into public/images/
+                                </p>
+                              </div>
+                            </div>
+                            <div className="w-full text-center font-mono text-[11px] text-[#6B6D72]">
+                              MNNIT ALLAHABAD
+                            </div>
+                          </div>
+                        )}
 
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-[6px] bg-[#F7F7F5] border border-[#E5E7EB] flex items-center justify-center shrink-0 text-[#17804A]">
-                    <Award className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="block font-medium text-[#0E0F11]">
-                      Cumulative GPA: 8.82 / 10.0
-                    </span>
-                    <span className="text-xs text-[#6B6D72] font-mono">
-                      Verified Academic Record
-                    </span>
-                  </div>
-                </div>
+                        {/* Hover Badge Indicating Replaceable Photo Spot */}
+                        <div className="absolute bottom-3 left-3 right-3 bg-[#FAFAF8]/90 backdrop-blur-sm border border-[#E5E7EB] rounded-lg px-2.5 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none flex items-center justify-between text-[10px] font-mono text-[#6B6D72]">
+                          <span>Photo frame</span>
+                          <span>public/images/profile.jpg</span>
+                        </div>
+                      </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-[6px] bg-[#F7F7F5] border border-[#E5E7EB] flex items-center justify-center shrink-0 text-[#0E0F11]">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="block font-medium text-[#0E0F11]">
-                      Prayagraj, Uttar Pradesh
-                    </span>
-                    <span className="text-xs text-[#6B6D72] font-mono">
-                      Motilal Nehru National Institute of Technology
-                    </span>
-                  </div>
-                </div>
+                      {/* Photo Metadata Caption (Matches Image 3) */}
+                      <div className="w-full max-w-[340px] mt-3.5 flex items-center justify-between font-mono text-[10px] sm:text-[11px] text-[#6B6D72] uppercase tracking-wider">
+                        <span className="flex items-center gap-1.5 shrink-0">
+                          <MapPin className="w-3 h-3 text-[#0E0F11]" />
+                          <span>PRAYAGRAJ, INDIA</span>
+                        </span>
+                        <span className="text-right text-[#8E9096]">25.43° N, 81.84° E · 2026</span>
+                      </div>
+                    </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-[6px] bg-[#F7F7F5] border border-[#E5E7EB] flex items-center justify-center shrink-0 text-[#0E0F11]">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="block font-medium text-[#0E0F11]">
-                      Open Source &amp; Systems
-                    </span>
-                    <span className="text-xs text-[#6B6D72] font-mono">
-                      GSSoC 2026 Contributor · E-Cell Web Dev
-                    </span>
-                  </div>
-                </div>
-              </div>
+                    {/* Right Column: Editorial Paragraph & 3 Metadata Columns */}
+                    <div className="lg:col-span-7 flex flex-col justify-between h-full pt-1">
+                      {/* Primary Editorial Quote / Statement */}
+                        <p className="reveal-statement font-serif-display text-2xl sm:text-3xl lg:text-[33px] leading-[1.32] text-[#0E0F11] font-normal mb-10 sm:mb-12">
+                          I work across the full depth of modern software—from the distributed database transaction to the pixel on screen.{" "}
+                          <span className="text-[#6B6D72]">
+                            Most products lose their momentum in the gap between the two, so I build on both sides of it and keep the system fast, resilient, and intuitive.
+                          </span>
+                        </p>
 
-              {/* Monogram Terminal Preview */}
-              <div className="mt-6 pt-6 border-t border-[#E5E7EB] bg-[#FAFAF8] -mx-6 -mb-6 p-6 rounded-b-xl">
-                <div className="flex items-center gap-2 mb-2 text-[#6B6D72] font-mono text-xs">
-                  <Terminal className="w-3.5 h-3.5" />
-                  <span>status_check.sh</span>
-                </div>
-                <div className="font-mono text-xs text-[#0E0F11] space-y-1">
-                  <p className="text-[#17804A]">✔ Systems operational</p>
-                  <p className="text-[#6B6D72]">Focus: In-memory FIFO, Trajectory AI</p>
-                </div>
-              </div>
-            </div>
-          </div>
+                        {/* Three Metadata Columns with Fine Top Divider (Matches Image 3) */}
+                          <div className="about-facts pt-8 border-t border-[#E5E7EB] grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 font-ui">
+                            {/* Column 1: BASED */}
+                              <div className="reveal-fact">
+                                <span className="block font-mono text-[11px] text-[#6B6D72] uppercase tracking-[0.14em] mb-2 font-medium">
+                                  BASED
+                                </span>
+                                <p className="text-sm font-medium text-[#0E0F11] leading-relaxed">
+                                  Prayagraj, India. MNNIT Allahabad. Open for global remote &amp; onsite roles.
+                                </p>
+                              </div>
 
-          {/* Right Column: Editorial Narrative & Principles (approx 58%) */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="prose max-w-none text-[#0E0F11]">
-              <p className="font-heading-md text-[#0E0F11] text-2xl sm:text-3xl leading-snug font-medium mb-6">
-                "I enjoy building software that combines thoughtful interfaces with reliable backend systems."
-              </p>
+                              {/* Column 2: EDUCATION */}
+                                <div className="reveal-fact">
+                                  <span className="block font-mono text-[11px] text-[#6B6D72] uppercase tracking-[0.14em] mb-2 font-medium">
+                                    EDUCATION
+                                  </span>
+                                  <p className="text-sm font-medium text-[#0E0F11] leading-relaxed">
+                                    B.Tech in Computer Science (2025–2029). Academic Standing: 8.82 CGPA.
+                                  </p>
+                                </div>
 
-              <div className="space-y-5 font-body text-[#6B6D72] text-base sm:text-[17px] leading-relaxed">
-                <p>
-                  I'm Om Upadhyay, a Computer Science and Engineering undergraduate at Motilal Nehru National Institute of Technology Allahabad.
-                </p>
-                <p>
-                  My work spans full-stack web development, real-time applications, developer tooling, and AI-integrated platforms. Whether developing in-memory FIFO order-matching books for secondary ticketing with PassFlow, orchestrating computer vision ANPR pipelines for urban traffic intelligence with Nagar-Drishti, or designing secure preload IPC bridges in Electron desktop engines with AuraDesk, I focus on the underlying architecture as much as the visible interface.
-                </p>
-                <p>
-                  Beyond projects, I spend time strengthening my understanding of data structures, algorithms, and the engineering decisions that make software scalable and maintainable. I believe software engineering is most rewarding when clean theory translates into robust, dependable products.
-                </p>
-              </div>
-            </div>
+                                {/* Column 3: CORE STACK */}
+                                  <div className="reveal-fact">
+                                    <span className="block font-mono text-[11px] text-[#6B6D72] uppercase tracking-[0.14em] mb-2 font-medium">
+                                      CORE STACK
+                                    </span>
+                                    <p className="text-sm font-medium text-[#0E0F11] leading-relaxed">
+                                      React, Next.js, Node.js, Express, PostgreSQL, Redis, Python, Three.js.
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 
-            {/* Principles Cards */}
-            <div className="pt-6 border-t border-[#E5E7EB] grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB]">
-                <span className="font-mono text-xs font-semibold text-[#17804A] block mb-1">
-                  01 / DETERMINISTIC ARCHITECTURE
-                </span>
-                <p className="font-body text-xs sm:text-sm text-[#6B6D72]">
-                  Reliable transactional boundaries, race condition avoidance, and reproducible data state across real-time systems.
-                </p>
-              </div>
-              <div className="p-5 rounded-lg bg-[#FFFFFF] border border-[#E5E7EB]">
-                <span className="font-mono text-xs font-semibold text-[#0E0F11] block mb-1">
-                  02 / SWISS EDITORIAL CRAFT
-                </span>
-                <p className="font-body text-xs sm:text-sm text-[#6B6D72]">
-                  Quiet typography, generous hierarchy, and restrained interactive details instead of distracting visual clutter.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+                              {/* Bottom Row: 4 Colossal Stat Figures (Slow Brightness Illumination) */}
+                              <div className="about-stats pt-10 sm:pt-12 border-t border-[#E5E7EB] grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+                                {/* Stat 1: CGPA */}
+                                  <div className="reveal-stat flex flex-col">
+                                    <span className="font-serif-display text-5xl sm:text-6xl lg:text-[76px] text-[#0E0F11] font-normal leading-none mb-3">
+                                      8.82
+                                    </span>
+                                    <p className="font-mono text-[11px] text-[#6B6D72] uppercase tracking-wider leading-snug">
+                                      CGPA AT MNNIT ALLAHABAD, TOP ACADEMIC STANDING IN COMPUTER SCIENCE
+                                    </p>
+                                  </div>
+
+                                  {/* Stat 2: Problems Solved */}
+                                    <div className="reveal-stat flex flex-col">
+                                      <span className="font-serif-display text-5xl sm:text-6xl lg:text-[76px] text-[#0E0F11] font-normal leading-none mb-3">
+                                        600+
+                                      </span>
+                                      <p className="font-mono text-[11px] text-[#6B6D72] uppercase tracking-wider leading-snug">
+                                        DATA STRUCTURE &amp; ALGORITHM PROBLEMS SOLVED ACROSS PLATFORMS
+                                      </p>
+                                    </div>
+
+                                    {/* Stat 3: CodeChef Rating */}
+                                      <div className="reveal-stat flex flex-col">
+                                        <span className="font-serif-display text-5xl sm:text-6xl lg:text-[76px] text-[#0E0F11] font-normal leading-none mb-3">
+                                          2★
+                                        </span>
+                                        <p className="font-mono text-[11px] text-[#6B6D72] uppercase tracking-wider leading-snug">
+                                          CODECHEF RATING (MAX 1400+) · CODEFORCES 1100+ RATING
+                                        </p>
+                                      </div>
+
+                                      {/* Stat 4: Avishkar Runner Up */}
+                                        <div className="reveal-stat flex flex-col">
+                                          <span className="font-serif-display text-5xl sm:text-6xl lg:text-[76px] text-[#0E0F11] font-normal leading-none mb-3">
+                                            2nd
+                                          </span>
+                                          <p className="font-mono text-[11px] text-[#6B6D72] uppercase tracking-wider leading-snug">
+                                            RUNNER-UP AT AVISHKAR 2025 (WEB DESIGN &amp; SOFTABLITZ DEVELOPER TRACKS)
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </section>
+                                  );
 }

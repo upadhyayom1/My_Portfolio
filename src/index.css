@@ -12,6 +12,7 @@
   --color-border-strong: #D7D9DE;
 
   --font-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
   --font-ui: 'Onest', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
 }
@@ -27,6 +28,7 @@
   --border: #E5E7EB;
   --border-strong: #D7D9DE;
 
+  --font-fraunces: 'Fraunces', Georgia, serif;
   --font-inter-tight: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-onest: 'Onest', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-dm-mono: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
@@ -62,6 +64,21 @@ body {
 }
 
 /* Fluid responsive typography classes */
+.font-serif-display {
+  font-family: var(--font-fraunces);
+  font-optical-sizing: auto;
+}
+
+.monumental-name {
+  font-family: var(--font-fraunces);
+  font-weight: 500;
+  font-size: clamp(68px, 16vw, 240px);
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  color: #0E0F11;
+  user-select: none;
+}
+
 .font-display {
   font-family: var(--font-inter-tight);
   font-size: clamp(36px, 6vw, 64px);
@@ -127,4 +144,110 @@ body {
   background-color: #0E0F11;
   z-index: 100;
   transition: width 0.08s ease-out;
+}
+
+/* Vividsites Button Hover Effects */
+.btn-editorial {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  height: 2.75rem;
+  padding: 0 0.35rem 0 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid #0E0F11;
+  font-family: var(--font-dm-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+  color: #0E0F11;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color 250ms cubic-bezier(0.2, 0, 0, 1), border-color 250ms ease;
+}
+
+.btn-editorial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #0E0F11;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.btn-editorial:hover {
+  color: #FAFAF8;
+  border-color: #0E0F11;
+}
+
+.btn-editorial:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-editorial .btn-icon-bubble {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 9999px;
+  background-color: #0E0F11;
+  color: #FAFAF8;
+  transition: background-color 250ms cubic-bezier(0.2, 0, 0, 1), transform 250ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.btn-editorial:hover .btn-icon-bubble {
+  background-color: #17804A;
+  transform: translateX(3px);
+}
+
+/* Solid Variant */
+.btn-editorial-solid {
+  background-color: #0E0F11;
+  color: #FAFAF8;
+  border-color: #0E0F11;
+}
+
+.btn-editorial-solid::before {
+  background-color: #17804A;
+}
+
+.btn-editorial-solid .btn-icon-bubble {
+  background-color: #FAFAF8;
+  color: #0E0F11;
+}
+
+.btn-editorial-solid:hover .btn-icon-bubble {
+  background-color: #FAFAF8;
+  color: #17804A;
+}
+
+/* Nav sibling dimming */
+.nav-links:hover a:not(:hover) {
+  opacity: 0.45;
+  transition: opacity 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Editorial Link Hover Sweep */
+.editorial-link {
+  background: linear-gradient(#17804A, #17804A) 0 100% / 0 2px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 500ms cubic-bezier(0.16, 1, 0.3, 1), color 150ms ease;
+}
+
+.editorial-link:hover {
+  background-size: 100% 2px;
+  color: #17804A;
+}
+
+/* Clinging card hanger wire attachment */
+.wire-hanger-pin {
+  transform-origin: 50% 0%;
+  will-change: transform;
 }

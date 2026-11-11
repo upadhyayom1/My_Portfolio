@@ -1,13 +1,12 @@
 import { Suspense, lazy } from "react";
 import { personalInfo } from "../data/portfolioData";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
 
 const InteractiveBadge = lazy(() => import("./InteractiveBadge"));
 
 function BadgeSkeleton() {
   return (
-    <div className="w-full h-[520px] sm:h-[580px] lg:h-[640px] flex items-center justify-center">
-      <div className="w-[280px] h-[390px] rounded-2xl bg-[#FFFFFF] border border-[#E5E7EB] p-6 shadow-sm flex flex-col justify-between animate-pulse">
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="w-[280px] h-[400px] rounded-2xl bg-[#FFFFFF] border border-[#E5E7EB] p-6 shadow-sm flex flex-col justify-between animate-pulse">
         <div className="space-y-4">
           <div className="h-4 bg-[#F0F0ED] rounded w-1/2" />
           <div className="h-8 bg-[#F0F0ED] rounded w-3/4" />
@@ -26,87 +25,59 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[640px] lg:min-h-[720px] lg:max-h-[880px] flex items-center pt-24 pb-12 sm:pb-16 overflow-hidden"
+      className="relative w-full min-h-[100svh] flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 pb-0 select-none"
     >
-      <div className="max-w-[1280px] w-full mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Editorial Introduction (approx 58%) */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
-            {/* Small Mono Introduction Label */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[4px] bg-[#F0F0ED] border border-[#E5E7EB] mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#17804A]" />
-              <span className="font-mono text-xs font-medium tracking-[0.14em] text-[#0E0F11] uppercase">
-                {personalInfo.hero.eyebrow}
-              </span>
-            </div>
-
-            {/* Large Editorial Headline */}
-            <h1 className="font-display text-[#0E0F11] tracking-tight mb-6">
-              {personalInfo.hero.headline}
-            </h1>
-
-            {/* Supporting Description */}
-            <p className="font-body text-[#6B6D72] text-base sm:text-lg lg:text-[18px] max-w-xl leading-relaxed mb-8">
-              {personalInfo.hero.description}
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 mb-10">
-              <a
-                href="#work"
-                className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-[6px] bg-[#0E0F11] text-[#FAFAF8] font-ui text-sm font-medium hover:bg-[#232529] transition-all duration-200"
-              >
-                <span>{personalInfo.hero.primaryCta}</span>
-                <ArrowDown className="w-4 h-4" />
-              </a>
-
-              <a
-                href={personalInfo.resumePath}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-[6px] bg-white border border-[#E5E7EB] text-[#0E0F11] font-ui text-sm font-medium hover:border-[#0E0F11] hover:bg-[#FAFAF8] transition-all duration-200"
-              >
-                <span>{personalInfo.hero.secondaryCta}</span>
-                <ArrowUpRight className="w-4 h-4 text-[#6B6D72]" />
-              </a>
-            </div>
-
-            {/* Quick Metadata Row */}
-            <div className="pt-6 border-t border-[#E5E7EB] w-full grid grid-cols-2 sm:grid-cols-3 gap-4">
-              <div>
-                <span className="block font-mono text-[11px] text-[#6B6D72] uppercase tracking-wider mb-0.5">
-                  Academic Focus
-                </span>
-                <span className="font-ui text-xs sm:text-sm font-medium text-[#0E0F11]">
-                  B.Tech CSE · MNNIT
-                </span>
-              </div>
-              <div>
-                <span className="block font-mono text-[11px] text-[#6B6D72] uppercase tracking-wider mb-0.5">
-                  Standing
-                </span>
-                <span className="font-ui text-xs sm:text-sm font-medium text-[#0E0F11]">
-                  8.82 CGPA · Class 2029
-                </span>
-              </div>
-              <div className="col-span-2 sm:col-span-1">
-                <span className="block font-mono text-[11px] text-[#6B6D72] uppercase tracking-wider mb-0.5">
-                  Location
-                </span>
-                <span className="font-ui text-xs sm:text-sm font-medium text-[#0E0F11]">
-                  Prayagraj, India
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: 3D Interactive Lanyard & Badge (approx 42%) */}
-          <div className="lg:col-span-5 flex items-center justify-center relative w-full">
-            <Suspense fallback={<BadgeSkeleton />}>
-              <InteractiveBadge />
-            </Suspense>
-          </div>
+      {/* Top Editorial Statements Row (Split Left & Right) */}
+      <div className="relative z-20 max-w-[1280px] w-full mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-start justify-between gap-4 sm:gap-12 pointer-events-none">
+        {/* Top-Left Statement */}
+        <div className="max-w-[280px] sm:max-w-[340px] pointer-events-auto">
+          <p className="font-body text-[#0E0F11] text-xs sm:text-[15px] leading-relaxed">
+            I build software that solves real problems.{" "}
+            <a
+              href="#work"
+              className="underline underline-offset-4 decoration-[#0E0F11] hover:text-[#17804A] transition-colors font-medium inline-block"
+            >
+              See the work
+            </a>
+          </p>
         </div>
+
+        {/* Top-Right Statement (Desktop / Tablet) */}
+        <div className="hidden sm:block max-w-[300px] sm:max-w-[380px] sm:text-right pointer-events-auto">
+          <p className="font-body text-[#0E0F11] text-sm sm:text-[15px] leading-relaxed text-[#0E0F11]">
+            Computer Science undergraduate at MNNIT Allahabad, building full-stack applications, real-time systems, and thoughtful digital experiences. Open for opportunities.
+          </p>
+        </div>
+      </div>
+
+      {/* Middle Center: 3D Interactive Lanyard Badge */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-10 flex items-center justify-center">
+        <Suspense fallback={<BadgeSkeleton />}>
+          <InteractiveBadge className="pointer-events-auto" showControls={false} />
+        </Suspense>
+      </div>
+
+      {/* Right Edge Interaction Hint (Matches Reference) */}
+      <div className="absolute right-6 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-end gap-1.5 font-mono text-[11px] text-[#6B6D72] uppercase tracking-[0.15em] pointer-events-none">
+        <div className="flex items-center gap-2">
+          <span>GRAB THE BADGE AND FLING IT.</span>
+          <span className="w-5 h-px bg-[#0E0F11]/40" />
+        </div>
+        <span>TAP IT TO TURN IT OVER.</span>
+      </div>
+
+      {/* Mobile Subtle Hint */}
+      <div className="relative z-20 md:hidden flex justify-center pb-2 pointer-events-auto">
+        <span className="px-3.5 py-1 rounded-full bg-[#FFFFFF]/85 border border-[#E5E7EB] font-mono text-[10px] text-[#6B6D72] uppercase tracking-wider backdrop-blur-sm shadow-xs">
+          Drag badge to swing · Tap to flip
+        </span>
+      </div>
+
+      {/* Bottom Monumental Name Heading (Edge-to-Edge Fraunces Serif) */}
+      <div className="relative w-full text-center overflow-hidden pointer-events-none select-none z-0 translate-y-[12%] sm:translate-y-[16%]">
+        <h1 className="monumental-name whitespace-nowrap text-[#0E0F11]">
+          {personalInfo.name}
+        </h1>
       </div>
     </section>
   );
