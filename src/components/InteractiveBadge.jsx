@@ -156,312 +156,248 @@ export default function InteractiveBadge({ className = "", showControls = true }
       g.lineWidth = 1.4;
       for (let k = 0; k < 22; k++) {
         g.beginPath();
-          for (let x = 0; x <= BASE_W; x += 6) {
-            const y =
-              950 +
-              k * 8 +
-              Math.sin(x * 0.012 + k * 0.4) * 28 * Math.sin(x * 0.0035 + k * 0.2);
-            if (x === 0) g.moveTo(x, y);
-            else g.lineTo(x, y);
-          }
-          g.stroke();
+        for (let x = 0; x <= BASE_W; x += 6) {
+          const y =
+            950 +
+            k * 8 +
+            Math.sin(x * 0.012 + k * 0.4) * 28 * Math.sin(x * 0.0035 + k * 0.2);
+          if (x === 0) g.moveTo(x, y);
+          else g.lineTo(x, y);
         }
-        g.restore();
-
-        // Header row
-        g.fillStyle = "#0E0F11";
-        g.font = '600 24px "DM Mono", monospace';
-        g.font = '700 28px "DM Mono", monospace';
-        g.letterSpacing = "3px";
-        g.fillText("MNNIT ALLAHABAD", 70, 96);
-        g.textAlign = "right";
-        g.fillText("ID: CSE-2029", FW - 70, 96);
-        g.fillText("ID: CSE-2029", BASE_W - 70, 96);
-        g.textAlign = "left";
-
-        // Divider line
-        g.fillStyle = "#0E0F11";
-        g.fillRect(70, 126, FW - 140, 2.5);
-        g.fillRect(70, 126, BASE_W - 140, 2.5);
-
-        // Institution Subtitle
-        g.fillStyle = "#0E0F11";
-        g.font = '500 18px "DM Mono", monospace';
-        g.fillStyle = "#374151";
-        g.font = '600 22px "DM Mono", monospace';
-        g.letterSpacing = "2px";
-        g.fillText("DEPT. OF COMPUTER SCIENCE & ENGINEERING", 70, 168);
-
-        // Primary Name
-        g.fillStyle = "#0E0F11";
-        g.font = '700 152px "Inter Tight", sans-serif';
-        g.font = '800 162px "Inter Tight", sans-serif';
-        g.letterSpacing = "-5px";
-        g.fillText("Om", 65, 340);
-        g.fillStyle = "#17804A";
-        g.fillText("Upadhyay", 65, 480);
-
-        // Role Pill & Label
-        g.fillStyle = "#0E0F11";
-        rr(g, 68, 526, 310, 44, 6);
-        rr(g, 68, 520, 335, 48, 8);
-        g.fill();
-        g.fillStyle = "#FAFAF8";
-        g.font = '600 18px "DM Mono", monospace';
-        g.font = '700 20px "DM Mono", monospace';
-        g.letterSpacing = "2px";
-        g.fillText("SOFTWARE DEVELOPER", 88, 554);
-        g.fillText("SOFTWARE DEVELOPER", 88, 552);
-
-        // Technical Focus Labels
-        g.fillStyle = "#0E0F11";
-        g.font = '500 20px "DM Mono", monospace';
-        g.fillStyle = "#1F2937";
-        g.font = '700 23px "DM Mono", monospace';
-        g.letterSpacing = "2px";
-        g.fillText("SYSTEMS · FULL-STACK · ALGORITHMS", 70, 630);
-
-        // Gold Chip Well Area (Left)
-        g.fillStyle = "rgba(23,128,74,0.1)";
-        g.fillStyle = "rgba(23,128,74,0.12)";
-        rr(g, 70, 675, 150, 115, 14);
-        g.fill();
-        g.strokeStyle = "#17804A";
-        g.lineWidth = 2;
-        g.lineWidth = 2.5;
-        rr(g, 70, 675, 150, 115, 14);
         g.stroke();
+      }
+      g.restore();
 
-        // Academic Credentials (Right)
-        g.fillStyle = "#0E0F11";
-        g.font = '600 24px "Inter Tight", sans-serif';
-        g.font = '700 28px "Inter Tight", sans-serif';
-        g.fillText("B.Tech. Computer Science", 250, 715);
-        g.fillStyle = "#4B4D52";
-        g.font = '500 18px "DM Mono", monospace';
-        g.fillText("BATCH: 2025–2029", 250, 747);
-        g.fillText("CAMPUS: PRAYAGRAJ, INDIA", 250, 777);
-        g.fillStyle = "#374151";
-        g.font = '600 21px "DM Mono", monospace';
-        g.fillText("BATCH: 2025–2029", 250, 750);
-        g.fillText("CAMPUS: PRAYAGRAJ, INDIA", 250, 782);
+      // Header row
+      g.fillStyle = "#0E0F11";
+      g.font = '700 28px "DM Mono", monospace';
+      g.letterSpacing = "3px";
+      g.fillText("MNNIT ALLAHABAD", 70, 96);
+      g.textAlign = "right";
+      g.fillText("ID: CSE-2029", BASE_W - 70, 96);
+      g.textAlign = "left";
 
-        // Divider line
-        g.fillStyle = "#E5E7EB";
-        g.fillRect(70, 830, FW - 140, 2);
-        g.fillStyle = "#D1D5DB";
-        g.fillRect(70, 830, BASE_W - 140, 2);
+      // Divider line
+      g.fillStyle = "#0E0F11";
+      g.fillRect(70, 126, BASE_W - 140, 2.5);
 
-        // Key Metrics Strip
-        g.fillStyle = "#0E0F11";
-        g.font = '700 36px "Inter Tight", sans-serif';
-        g.font = '800 46px "Inter Tight", sans-serif';
-        g.fillText("8.82", 70, 895);
-        g.fillText("600+", 260, 895);
-        g.fillText("2★", 450, 895);
-        g.fillText("1100+", 610, 895);
-        g.fillText("2★", 460, 895);
-        g.fillText("1100+", 630, 895);
+      // Institution Subtitle
+      g.fillStyle = "#374151";
+      g.font = '600 22px "DM Mono", monospace';
+      g.letterSpacing = "2px";
+      g.fillText("DEPT. OF COMPUTER SCIENCE & ENGINEERING", 70, 168);
 
-        g.fillStyle = "#6B6D72";
-        g.font = '500 14px "DM Mono", monospace';
-        g.fillStyle = "#374151";
-        g.font = '700 16px "DM Mono", monospace';
-        g.letterSpacing = "1.5px";
-        g.fillText("CGPA / 10.0", 70, 928);
-        g.fillText("LEETCODE SOLVED", 260, 928);
-        g.fillText("CODECHEF", 450, 928);
-        g.fillText("CODEFORCES", 610, 928);
-        g.fillText("CGPA / 10.0", 70, 930);
-        g.fillText("LEETCODE SOLVED", 260, 930);
-        g.fillText("CODECHEF", 460, 930);
-        g.fillText("CODEFORCES", 630, 930);
+      // Primary Name
+      g.fillStyle = "#0E0F11";
+      g.font = '800 162px "Inter Tight", sans-serif';
+      g.letterSpacing = "-5px";
+      g.fillText("Om", 65, 340);
+      g.fillStyle = "#17804A";
+      g.fillText("Upadhyay", 65, 480);
 
-        // Verification & Barcode area
-        g.fillStyle = "#E5E7EB";
-        g.fillRect(70, 990, FW - 140, 2);
-        g.fillStyle = "#D1D5DB";
-        g.fillRect(70, 990, BASE_W - 140, 2);
+      // Role Pill & Label
+      g.fillStyle = "#0E0F11";
+      rr(g, 68, 520, 335, 48, 8);
+      g.fill();
+      g.fillStyle = "#FAFAF8";
+      g.font = '700 20px "DM Mono", monospace';
+      g.letterSpacing = "2px";
+      g.fillText("SOFTWARE DEVELOPER", 88, 552);
 
-        // Barcode bars
-        const bars = [3, 2, 5, 2, 4, 6, 2, 3, 2, 5, 3, 4, 2, 6, 4, 2, 5, 3, 2, 4, 3, 5, 2];
-        let curX = 70;
-        g.fillStyle = "#0E0F11";
-        for (const b of bars) {
-          g.fillRect(curX, 1025, b * 3, 48);
-          curX += b * 3 + 6;
-        }
+      // Technical Focus Labels
+      g.fillStyle = "#1F2937";
+      g.font = '700 23px "DM Mono", monospace';
+      g.letterSpacing = "2px";
+      g.fillText("SYSTEMS · FULL-STACK · ALGORITHMS", 70, 630);
 
-        g.fillStyle = "#0E0F11";
-        g.font = '500 14px "DM Mono", monospace';
-        g.fillStyle = "#1F2937";
-        g.font = '700 17px "DM Mono", monospace';
-        g.fillText("VERIFIED ENGINEERING CREDENTIAL · TAP TO FLIP", 70, 1115);
+      // Gold Chip Well Area (Left)
+      g.fillStyle = "rgba(23,128,74,0.12)";
+      rr(g, 70, 675, 150, 115, 14);
+      g.fill();
+      g.strokeStyle = "#17804A";
+      g.lineWidth = 2.5;
+      rr(g, 70, 675, 150, 115, 14);
+      g.stroke();
 
-        // Outer border
-        g.strokeStyle = "rgba(14,15,17,0.18)";
-        g.lineWidth = 2.5;
-        rr(g, 10, 10, FW - 20, FH - 20, 24);
-        rr(g, 10, 10, BASE_W - 20, BASE_H - 20, 24);
-        g.stroke();
+      // Academic Credentials (Right)
+      g.fillStyle = "#0E0F11";
+      g.font = '700 28px "Inter Tight", sans-serif';
+      g.fillText("B.Tech. Computer Science", 250, 715);
+      g.fillStyle = "#374151";
+      g.font = '600 21px "DM Mono", monospace';
+      g.fillText("BATCH: 2025–2029", 250, 750);
+      g.fillText("CAMPUS: PRAYAGRAJ, INDIA", 250, 782);
 
-        g.restore();
+      // Divider line
+      g.fillStyle = "#D1D5DB";
+      g.fillRect(70, 830, BASE_W - 140, 2);
+
+      // Key Metrics Strip
+      g.fillStyle = "#0E0F11";
+      g.font = '800 46px "Inter Tight", sans-serif';
+      g.fillText("8.82", 70, 895);
+      g.fillText("600+", 260, 895);
+      g.fillText("2★", 460, 895);
+      g.fillText("1100+", 630, 895);
+
+      g.fillStyle = "#374151";
+      g.font = '700 16px "DM Mono", monospace';
+      g.letterSpacing = "1.5px";
+      g.fillText("CGPA / 10.0", 70, 930);
+      g.fillText("LEETCODE SOLVED", 260, 930);
+      g.fillText("CODECHEF", 460, 930);
+      g.fillText("CODEFORCES", 630, 930);
+
+      // Verification & Barcode area
+      g.fillStyle = "#D1D5DB";
+      g.fillRect(70, 990, BASE_W - 140, 2);
+
+      // Barcode bars
+      const bars = [3, 2, 5, 2, 4, 6, 2, 3, 2, 5, 3, 4, 2, 6, 4, 2, 5, 3, 2, 4, 3, 5, 2];
+      let curX = 70;
+      g.fillStyle = "#0E0F11";
+      for (const b of bars) {
+        g.fillRect(curX, 1025, b * 3, 48);
+        curX += b * 3 + 6;
       }
 
-      // Texture generation: Back Face (Interactive Links & Tech Stack)
-      const [bc, bg] = mk(FW, FH);
-      const ROW0 = 360;
-      const ROWH = 120;
-      const LINKS = [
-        ["01 / GITHUB", "github.com/upadhyayom1", "https://github.com/upadhyayom1"],
-        ["02 / LINKEDIN", "in/om-upadhyay", "https://www.linkedin.com/in/om-upadhyay-772787371/"],
-        ["03 / LEETCODE", "leetcode.com/upadhyayom1", "https://leetcode.com/upadhyayom1/"],
-        ["04 / CODEFORCES", "codeforces.com/profile/upadhyayom1", "https://codeforces.com/profile/upadhyayom1"],
-        ["05 / EMAIL", "upadhyayom234@gmail.com", "mailto:upadhyayom234@gmail.com"],
-      ];
+      g.fillStyle = "#1F2937";
+      g.font = '700 17px "DM Mono", monospace';
+      g.fillText("VERIFIED ENGINEERING CREDENTIAL · TAP TO FLIP", 70, 1115);
 
-      function drawBack(g, hoveredIdx = -1) {
-        g.save();
-        g.scale(S_TEX, S_TEX);
-        g.imageSmoothingEnabled = true;
-        g.imageSmoothingQuality = "high";
+      // Outer border
+      g.strokeStyle = "rgba(14,15,17,0.18)";
+      g.lineWidth = 2.5;
+      rr(g, 10, 10, BASE_W - 20, BASE_H - 20, 24);
+      g.stroke();
 
-        g.fillStyle = "#FAFAF8";
-        g.fillRect(0, 0, FW, FH);
-        g.fillRect(0, 0, BASE_W, BASE_H);
+      g.restore();
+    }
 
-        // Header
+    // Texture generation: Back Face (Interactive Links & Tech Stack)
+    const [bc, bg] = mk(FW, FH);
+    const ROW0 = 360;
+    const ROWH = 120;
+    const LINKS = [
+      ["01 / GITHUB", "github.com/upadhyayom1", "https://github.com/upadhyayom1"],
+      ["02 / LINKEDIN", "in/om-upadhyay", "https://www.linkedin.com/in/om-upadhyay-772787371/"],
+      ["03 / LEETCODE", "leetcode.com/upadhyayom1", "https://leetcode.com/upadhyayom1/"],
+      ["04 / CODEFORCES", "codeforces.com/profile/upadhyayom1", "https://codeforces.com/profile/upadhyayom1"],
+      ["05 / EMAIL", "upadhyayom234@gmail.com", "mailto:upadhyayom234@gmail.com"],
+    ];
+
+    function drawBack(g, hoveredIdx = -1) {
+      g.save();
+      g.scale(S_TEX, S_TEX);
+      g.imageSmoothingEnabled = true;
+      g.imageSmoothingQuality = "high";
+
+      g.fillStyle = "#FAFAF8";
+      g.fillRect(0, 0, BASE_W, BASE_H);
+
+      // Header
+      g.fillStyle = "#0E0F11";
+      g.font = '700 26px "DM Mono", monospace';
+      g.letterSpacing = "3px";
+      g.fillText("TECHNICAL CAPABILITIES", 70, 96);
+      g.textAlign = "right";
+      g.fillText("IDENTIFIERS", BASE_W - 70, 96);
+      g.textAlign = "left";
+
+      g.fillStyle = "rgba(14,15,17,0.2)";
+      g.fillRect(70, 126, BASE_W - 140, 2);
+
+      // Tech Stack Pills Row
+      const coreStack = ["React", "TypeScript", "Node.js", "PostgreSQL", "C++", "FastAPI", "Redis"];
+      let pillX = 70;
+      let pillY = 170;
+      for (const skill of coreStack) {
+        g.font = '600 18px "DM Mono", monospace';
+        const textW = g.measureText(skill).width;
+        const pW = textW + 28;
+        if (pillX + pW > BASE_W - 70) {
+          pillX = 70;
+          pillY += 46;
+        }
+        g.fillStyle = "#F0F0ED";
+        rr(g, pillX, pillY, pW, 36, 6);
+        g.fill();
+        g.strokeStyle = "#C4C7CE";
+        g.lineWidth = 1.2;
+        rr(g, pillX, pillY, pW, 36, 6);
+        g.stroke();
         g.fillStyle = "#0E0F11";
-        g.font = '500 24px "DM Mono", monospace';
-        g.font = '700 26px "DM Mono", monospace';
-        g.letterSpacing = "3px";
-        g.fillText("TECHNICAL CAPABILITIES", 70, 96);
-        g.textAlign = "right";
-        g.fillText("IDENTIFIERS", FW - 70, 96);
-        g.fillText("IDENTIFIERS", BASE_W - 70, 96);
-        g.textAlign = "left";
+        g.fillText(skill, pillX + 14, pillY + 23);
+        pillX += pW + 12;
+      }
 
-        g.fillStyle = "rgba(14,15,17,0.15)";
-        g.fillRect(70, 126, FW - 140, 2);
-        g.fillStyle = "rgba(14,15,17,0.2)";
-        g.fillRect(70, 126, BASE_W - 140, 2);
+      g.fillStyle = "rgba(14,15,17,0.15)";
+      g.fillRect(70, 310, BASE_W - 140, 1.5);
 
-        // Tech Stack Pills Row
-        const coreStack = ["React", "TypeScript", "Node.js", "PostgreSQL", "C++", "FastAPI", "Redis"];
-        let pillX = 70;
-        let pillY = 170;
-        for (const skill of coreStack) {
-          g.font = '500 16px "DM Mono", monospace';
-          g.font = '600 18px "DM Mono", monospace';
-          const textW = g.measureText(skill).width;
-          const pW = textW + 28;
-          if (pillX + pW > FW - 70) {
-            if (pillX + pW > BASE_W - 70) {
-              pillX = 70;
-              pillY += 46;
-            }
-            g.fillStyle = "#F0F0ED";
-            rr(g, pillX, pillY, pW, 36, 6);
-            g.fill();
-            g.strokeStyle = "#D7D9DE";
-            g.lineWidth = 1;
-            g.strokeStyle = "#C4C7CE";
-            g.lineWidth = 1.2;
-            rr(g, pillX, pillY, pW, 36, 6);
-            g.stroke();
-            g.fillStyle = "#0E0F11";
-            g.fillText(skill, pillX + 14, pillY + 23);
-            pillX += pW + 12;
-          }
+      // Interactive Links Rows
+      LINKS.forEach(([numLabel, val], i) => {
+        const y = ROW0 + i * ROWH;
+        const isHovered = i === hoveredIdx;
 
-          g.fillStyle = "rgba(14,15,17,0.1)";
-          g.fillRect(70, 310, FW - 140, 1.5);
-          g.fillStyle = "rgba(14,15,17,0.15)";
-          g.fillRect(70, 310, BASE_W - 140, 1.5);
+        if (isHovered) {
+          g.fillStyle = "#0E0F11";
+          rr(g, 65, y - 10, BASE_W - 130, ROWH - 12, 8);
+          g.fill();
 
-          // Interactive Links Rows
-          LINKS.forEach(([numLabel, val], i) => {
-            const y = ROW0 + i * ROWH;
-            const isHovered = i === hoveredIdx;
-
-            if (isHovered) {
-              g.fillStyle = "#0E0F11";
-              rr(g, 65, y - 10, FW - 130, ROWH - 12, 8);
-              rr(g, 65, y - 10, BASE_W - 130, ROWH - 12, 8);
-              g.fill();
-
-              g.fillStyle = "#FAFAF8";
-              g.font = '400 16px "DM Mono", monospace';
-              g.font = '600 17px "DM Mono", monospace';
-              g.letterSpacing = "2px";
-              g.fillText(numLabel, 90, y + 26);
-
-              g.font = '600 24px "Inter Tight", sans-serif';
-              g.font = '700 26px "Inter Tight", sans-serif';
-              g.fillText(val, 90, y + 66);
-
-              g.textAlign = "right";
-              g.font = '400 26px "Inter Tight", sans-serif';
-              g.fillText("↗", FW - 90, y + 54);
-              g.font = '500 28px "Inter Tight", sans-serif';
-              g.fillText("↗", BASE_W - 90, y + 54);
-              g.textAlign = "left";
-            } else {
-              g.fillStyle = "#F7F7F5";
-              rr(g, 65, y - 10, FW - 130, ROWH - 12, 8);
-              rr(g, 65, y - 10, BASE_W - 130, ROWH - 12, 8);
-              g.fill();
-              g.strokeStyle = "#E5E7EB";
-              g.lineWidth = 1;
-              rr(g, 65, y - 10, FW - 130, ROWH - 12, 8);
-              g.strokeStyle = "#D1D5DB";
-              g.lineWidth = 1.2;
-              rr(g, 65, y - 10, BASE_W - 130, ROWH - 12, 8);
-              g.stroke();
-
-              g.fillStyle = "#6B6D72";
-              g.font = '400 15px "DM Mono", monospace';
-              g.fillStyle = "#4B4D52";
-              g.font = '600 16px "DM Mono", monospace';
-              g.letterSpacing = "2px";
-              g.fillText(numLabel, 90, y + 26);
-
-              g.fillStyle = "#0E0F11";
-              g.font = '500 23px "Inter Tight", sans-serif';
-              g.font = '700 25px "Inter Tight", sans-serif';
-              g.fillText(val, 90, y + 66);
-
-              g.textAlign = "right";
-              g.fillStyle = "#6B6D72";
-              g.font = '400 22px "Inter Tight", sans-serif';
-              g.fillText("↗", FW - 90, y + 54);
-              g.fillStyle = "#4B4D52";
-              g.font = '500 24px "Inter Tight", sans-serif';
-              g.fillText("↗", BASE_W - 90, y + 54);
-              g.textAlign = "left";
-            }
-          });
-
-          // Bottom footer instructions
-          g.fillStyle = "#6B6D72";
-          g.font = '400 15px "DM Mono", monospace';
-          g.fillStyle = "#374151";
-          g.font = '600 16px "DM Mono", monospace';
+          g.fillStyle = "#FAFAF8";
+          g.font = '600 17px "DM Mono", monospace';
           g.letterSpacing = "2px";
-          g.textAlign = "center";
-          g.fillText("CLICK A LINK TO OPEN · CLICK CARD TO FLIP", FW / 2, 1070);
-          g.fillText("CLICK A LINK TO OPEN · CLICK CARD TO FLIP", BASE_W / 2, 1070);
-          g.textAlign = "left";
+          g.fillText(numLabel, 90, y + 26);
 
-          // Border
-          g.strokeStyle = "rgba(14,15,17,0.12)";
-          g.lineWidth = 2;
-          rr(g, 10, 10, FW - 20, FH - 20, 24);
-          rr(g, 10, 10, BASE_W - 20, BASE_H - 20, 24);
+          g.font = '700 26px "Inter Tight", sans-serif';
+          g.fillText(val, 90, y + 66);
+
+          g.textAlign = "right";
+          g.font = '500 28px "Inter Tight", sans-serif';
+          g.fillText("↗", BASE_W - 90, y + 54);
+          g.textAlign = "left";
+        } else {
+          g.fillStyle = "#F7F7F5";
+          rr(g, 65, y - 10, BASE_W - 130, ROWH - 12, 8);
+          g.fill();
+          g.strokeStyle = "#D1D5DB";
+          g.lineWidth = 1.2;
+          rr(g, 65, y - 10, BASE_W - 130, ROWH - 12, 8);
           g.stroke();
 
-          g.restore();
+          g.fillStyle = "#4B4D52";
+          g.font = '600 16px "DM Mono", monospace';
+          g.letterSpacing = "2px";
+          g.fillText(numLabel, 90, y + 26);
+
+          g.fillStyle = "#0E0F11";
+          g.font = '700 25px "Inter Tight", sans-serif';
+          g.fillText(val, 90, y + 66);
+
+          g.textAlign = "right";
+          g.fillStyle = "#4B4D52";
+          g.font = '500 24px "Inter Tight", sans-serif';
+          g.fillText("↗", BASE_W - 90, y + 54);
+          g.textAlign = "left";
         }
+      });
+
+      // Bottom footer instructions
+      g.fillStyle = "#374151";
+      g.font = '600 16px "DM Mono", monospace';
+      g.letterSpacing = "2px";
+      g.textAlign = "center";
+      g.fillText("CLICK A LINK TO OPEN · CLICK CARD TO FLIP", BASE_W / 2, 1070);
+      g.textAlign = "left";
+
+      // Border
+      g.strokeStyle = "rgba(14,15,17,0.12)";
+      g.lineWidth = 2;
+      rr(g, 10, 10, BASE_W - 20, BASE_H - 20, 24);
+      g.stroke();
+
+      g.restore();
+    }
 
         drawFront(fg);
         drawBack(bg, -1);
@@ -581,10 +517,6 @@ export default function InteractiveBadge({ className = "", showControls = true }
           map: frontTex,
           color: 0xffffff,
           toneMapped: false,
-          roughness: 0.55,
-          clearcoat: 0.15,
-          clearcoatRoughness: 0.25,
-          envMapIntensity: 0.18,
           roughness: 0.28,
           clearcoat: 0.1,
           clearcoatRoughness: 0.08,
@@ -594,10 +526,6 @@ export default function InteractiveBadge({ className = "", showControls = true }
           map: backTex,
           color: 0xffffff,
           toneMapped: false,
-          roughness: 0.55,
-          clearcoat: 0.15,
-          clearcoatRoughness: 0.25,
-          envMapIntensity: 0.18,
           roughness: 0.28,
           clearcoat: 0.1,
           clearcoatRoughness: 0.08,
@@ -659,16 +587,10 @@ export default function InteractiveBadge({ className = "", showControls = true }
 
         // Sleeve with real slot cutout
         const sleeveShape = rrShape(SW, ST - SB, 0.16, 0, (ST + SB) / 2);
-        // Slot hole in sleeve
         // Slot hole in sleeve (placed in the top tab above the card)
         {
           const p = new THREE.Path();
           const w = 0.64;
-          const h = 0.12;
-          const r = 0.06;
-          p.moveTo(-w / 2 + r, -h / 2);
-          p.absarc(w / 2 - r, 0, r, -Math.PI / 2, Math.PI / 2, false);
-          p.absarc(-w / 2 + r, 0, r, Math.PI / 2, Math.PI * 1.5, false);
           const h = 0.14;
           const r = 0.07;
           const cy = 1.68;
@@ -679,16 +601,12 @@ export default function InteractiveBadge({ className = "", showControls = true }
         }
         const sleeveMat = new THREE.MeshPhysicalMaterial({
           transparent: true,
-          opacity: 0.22,
-          roughness: 0.04,
           opacity: 0.03,
           roughness: 0.0,
           clearcoat: 1,
-          clearcoatRoughness: 0.05,
           clearcoatRoughness: 0.02,
           side: THREE.DoubleSide,
           depthWrite: false,
-          envMapIntensity: 1.2,
           envMapIntensity: 0.9,
           color: 0xffffff,
         });
@@ -861,10 +779,8 @@ export default function InteractiveBadge({ className = "", showControls = true }
           const aspect = W / Hh;
           viewW = VIEW_H * aspect;
           mobile = aspect < 0.9;
-          S = mobile ? clamp(viewW / 5.2, 0.72, 0.95) : clamp(viewW / 8.2, 0.82, 1.15);
           S = mobile ? clamp(viewW / 4.4, 0.95, 1.25) : clamp(viewW / 6.4, 1.35, 1.62);
 
-          const clampY = mobile ? 1.6 : 1.25;
           const clampY = mobile ? 2.5 : 2.55;
           hookLen = 0.345 * S;
           const ax = mobile ? 0.9 : 1.35 * S;
@@ -890,7 +806,6 @@ export default function InteractiveBadge({ className = "", showControls = true }
           const w = SW * S;
           const h = (ST - SB) * S;
           B.I.set((M * h * h) / 12, (M * w * w) / 12, (M * (w * w + h * h)) / 12);
-          B.rH.set(0, (-(ST + SB) / 2) * S, 0);
           B.rH.set(0, 1.68 * S, 0);
           B.q.identity();
           B.qp.identity();
@@ -956,9 +871,6 @@ export default function InteractiveBadge({ className = "", showControls = true }
         }
 
         function twistSolve(h) {
-          const goalZ = flip > 0 ? 1 : -1;
-          const err = ez.z - goalZ;
-          const torq = -16 * err * (flip > 0 ? 1 : -1) - 3.2 * B.w.y;
           const targetAngle = flip > 0 ? 0 : Math.PI;
           let currentAngle = Math.atan2(ez.x, ez.z);
           let diff = targetAngle - currentAngle;
@@ -1087,7 +999,6 @@ export default function InteractiveBadge({ className = "", showControls = true }
         function sync() {
           updateFrame();
           const Hp = t1.copy(B.rH).applyQuaternion(B.q).add(B.x);
-          card.position.copy(Hp);
           card.position.copy(B.x);
           card.quaternion.copy(B.q);
 
@@ -1202,7 +1113,6 @@ export default function InteractiveBadge({ className = "", showControls = true }
           setNDC(cx, cy);
           const h = ray.intersectObject(back, false)[0];
           if (!h) return -1;
-          const y = (1 - h.uv.y) * FH;
           const y = (1 - h.uv.y) * BASE_H;
           const i = Math.floor((y - ROW0) / ROWH);
           return i >= 0 && i < LINKS.length ? i : -1;
@@ -1335,7 +1245,6 @@ export default function InteractiveBadge({ className = "", showControls = true }
           const r = host.getBoundingClientRect();
           const Wd = Math.max(1, r.width);
           const Hd = Math.max(1, r.height);
-          const dpr = Math.min(window.devicePixelRatio || 1, Wd < 700 ? 1.8 : 2);
           const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
           renderer.setPixelRatio(dpr);
           renderer.setSize(Wd, Hd, false);
